@@ -6,6 +6,49 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import re
 
+global LEARNERSHIP_ID_CHOICES
+
+LEARNERSHIP_ID_CHOICES = (
+        
+        ('436','436 - Certificate in General Nursing (Enrolled) Level 4'),
+        ('437','437 - Diploma in General Nursing (Bridging) Level 5'),
+        ('439','439 - FETC Phlebotomy Techniques NQF Level 4'),
+        ('440','440 - Certificate in General Nursing (Auxiliary) Level 4'),
+        ('442','442 - Post Basic Diploma in Medical/Surgical Nursing (Elective: Critical Care/Operating Theater Nursing) Level 6'),
+        ('444','444 - FET Certificate in Social Auxiliary Work Level 4'),
+        ('446','446 - Further Education and Training Certificate: Child and Youth Care Work Level 4'),
+        ('448','448 - Health Promotion Officer NQF Level 3'),
+        ('1117','1117 - National Certificate: Pharmacist Assistance Level 3'),
+        ('1118','1118 - Ferther Education and Training Certificate: Pharmacist Assistance Level 4'),
+        ('1357','1357 - Further Education and Training Certificate:  Early Childhood Development Level 4'),
+        ('268','268 - L5 - Learnership for ECD Trainers Level 5'),
+        ('6591', '6591 - University Diploma:Veterinary Nursing Level 6'),
+        ('10809', '10809 - Post Basic Diploma: Operating  Theater Nursing Science Level 7'),
+        ('21214', '21214 - Post Basic Diploma: Medical and Surgical Nursing Science Level 7'),
+        ('16496', '16496 - Advance University Diploma: Midwifery and Neonatal Nursing Level 7'),
+        ('17196', '17196 - Bridging Diploma: Nursing General Level 5'),
+        ('97756', '97756 - Higher Certificate: Auxilliary Nursing Level 5'),
+        ('72049', '72049 - National Certificate: Pharmacy Assistant Level 3'),
+        ('72050', '72050 - Further Education and training Certificate: Pharmacy Assistant Level 4'),
+        ('59345', '59345 - Further Education and training Certificate: Phlebotomy Technique Level 4'),
+        ('60209', '60209 - Further Education and training Certificate: Child & Youthcare Level 4'),
+        ('94597', '94597 - Occupational Certificate: Health Promotion Officer Level 3'),
+        ('99510', '99510 - Occupational Certificate: Child and Youth care Worker Level 5'),
+        ('98890', '98890 - Occupational Certificate: Social Auxiliary Worker Level 5'),
+        ('1502', '1502 - National Certificate: Occupational Health, Safety and Environment: Mining and Minerals, Level 2'),
+        ('1111','1111 - General Education and Training Certificate: Business Practice, Level 1'),
+        ('1216','1216 - National Certificate: Public Administration: Leadership, Level 5'),
+        ('1217','1217 - National Certificate: Public Administration: Procurement, Level 5'),
+        ('797','797 - Office Administration Assistant, Level 2'),
+        ('527','527 - National Certificate in People Centre Management, Level 2'),
+        ('871','871 - Contact Centre Support, Level 2'),
+        ('1063','1063 - National Certificate: Wholesale Retail: Visual Merchandising, Level 3'),
+        ('61595', '61595 - Further Education and Training Certificate: Business Administration Services Level 4'),
+        ( '57712', 'Further Education and Training Certificate: Generic Management - level 4'),
+        ('61591', 'National Certificate: Information Technology: End User Computing – level 3'),
+        ('63969', 'National Certificate: Pharmaceutical Sales Representation – level 5'),
+
+    )
 
 def validate_letters_special(value):
     if not re.match(r"(?=.*[ABCDEFGHIJKLMNOPQRTSUVWXYZ1234567890#&\(\)\/:\._`])",value):
@@ -843,7 +886,7 @@ class Internship_Placement(models.Model):
     cumulative_spend = models.CharField(max_length=10)
     ofo_code = models.ForeignKey(OFO_Code, to_field='lookup', on_delete=models.CASCADE)
     urban_rural_id = models.ForeignKey(Urban_Rural_ID, to_field='lookup', on_delete=models.CASCADE)
-    date_stamp = models.DateField()
+    date_stamp = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):
         return str(self.person)+" ("+str(self.qualification_id)+")"
@@ -858,10 +901,35 @@ class Non_NQF_Intervention(models.Model):
     non_nqf_intervention_etqe_id = models.CharField(max_length=10)
     non_nqf_status_id = models.ForeignKey(Non_NQF_Interv_Status_Id, to_field='lookup', on_delete=models.CASCADE)
     non_nqf_credit = models.CharField(max_length=10)
-    date_stamp = models.DateField()
+    date_stamp = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):
         return str(self.person)+" ("+str(self.non_nqf_intervention_code)+")"
+
+class Non_NQF_Placements(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    non_nqf_intervention_code = models.CharField(max_length=20)
+    enrolment_status_id =  models.ForeignKey(Enrolment_Status_Id, on_delete=models.CASCADE)
+    assessor_registration_number =  models.CharField(max_length=20)
+    enrolment_type_id = models.ForeignKey(Enrolment_Type_Id, on_delete=models.CASCADE)
+    enrolment_status_date = models.DateField()
+    enrolment_date = models.DateField()
+    part_of_id = models.ForeignKey(Part_Of_Id, on_delete=models.CASCADE)
+    qualification_id = models.CharField(max_length=10)
+    learnership_id = models.CharField(max_length=10, choices=LEARNERSHIP_ID_CHOICES)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    assessor_etqe_id = models.CharField(max_length=10)
+    enrolment_status_reason_id = models.ForeignKey(Enrolment_Status_Reason_Id, on_delete=models.CASCADE)
+    most_recent_registration_date = models.DateField()
+    economic_status_id = models.ForeignKey(Economic_Status_Id, on_delete=models.CASCADE)
+    funding_id = models.ForeignKey(Funding_Id, on_delete=models.CASCADE)
+    cumulative_spend = models.CharField(max_length=10)
+    ofo_code = models.ForeignKey(OFO_Code, on_delete=models.CASCADE)
+    sdl_no = models.CharField(max_length=10)
+    site_no = models.CharField(max_length=10)
+    non_nqf_intervention_etqe_id = models.CharField(max_length=10)
+    urban_rural_id = models.ForeignKey(Urban_Rural_ID, on_delete=models.CASCADE)
+    date_stamp = models.DateField(default=datetime.datetime.now)
 
 
 

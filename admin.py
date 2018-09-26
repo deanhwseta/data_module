@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Designation, Provider, Employer, Person, Learnership, Qualification, Unit_Standard, Alternate_Id_Type_Id, Internship_Placement, Non_NQF_Intervention
+from .models import Designation, Provider, Employer, Person, Learnership, Qualification, Unit_Standard, Alternate_Id_Type_Id, Internship_Placement, Non_NQF_Intervention, Non_NQF_Placements
 from django import forms
 
 ##########################
@@ -61,4 +61,5 @@ admin.site.register(Unit_Standard)
 admin.site.register(Internship_Placement)
 admin.site.register(Designation)
 admin.site.register(Non_NQF_Intervention)
+admin.site.register(Non_NQF_Placements)
 admin.site.register(Provider)

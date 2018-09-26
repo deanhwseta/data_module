@@ -906,7 +906,7 @@ class Non_NQF_Intervention(models.Model):
     def __str__(self):
         return str(self.person)+" ("+str(self.non_nqf_intervention_code)+")"
 
-class Non_NQF_Placements(models.Model):
+class Non_NQF_Placement(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     non_nqf_intervention_code = models.CharField(max_length=20)
     enrolment_status_id =  models.ForeignKey(Enrolment_Status_Id, on_delete=models.CASCADE)

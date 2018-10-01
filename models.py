@@ -901,6 +901,7 @@ class Non_NQF_Intervention(models.Model):
     non_nqf_intervention_etqe_id = models.CharField(max_length=10)
     non_nqf_status_id = models.ForeignKey(Non_NQF_Interv_Status_Id, to_field='lookup', on_delete=models.CASCADE)
     non_nqf_credit = models.CharField(max_length=10)
+    learning_programme_type_id = models.CharField(max_length=10)
     date_stamp = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):

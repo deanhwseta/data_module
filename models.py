@@ -44,9 +44,16 @@ LEARNERSHIP_ID_CHOICES = (
         ('871','871 - Contact Centre Support, Level 2'),
         ('1063','1063 - National Certificate: Wholesale Retail: Visual Merchandising, Level 3'),
         ('61595', '61595 - Further Education and Training Certificate: Business Administration Services Level 4'),
-        ( '57712', 'Further Education and Training Certificate: Generic Management - level 4'),
+        ('57712', 'Further Education and Training Certificate: Generic Management - level 4'),
         ('61591', 'National Certificate: Information Technology: End User Computing – level 3'),
         ('63969', 'National Certificate: Pharmaceutical Sales Representation – level 5'),
+        ('61592', 'National Diploma: Human Resources Management and Practices - level 5'),
+        ('66876', 'National Certificate: Management Assistant – N6'),
+        ('66874', 'National Certificate: Financial Management Level 4'),
+        ('6695543', 'National Certificate: Financial Management Level 5'),
+        ('66998', 'National Certificate:  Financial Management Level 6'),
+        ('66997', 'National Certificate: N6 Human Resource Management Level 6'),
+        ('67000', 'National Certificate: N6 Public Management Level 6'),
 
     )
 

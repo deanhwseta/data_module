@@ -770,11 +770,11 @@ class Learnership(models.Model):
     
     learnership_id = models.CharField(max_length=10, choices=LEARNERSHIP_ID_CHOICES)
 
-    LEARNERSHIP_TYPE_CHOICES = (
-        ('Technical', 'Technical'),
-        ('Academic', 'Academic'),
-    )
-    learnership_type = models.CharField(max_length=10, choices=LEARNERSHIP_TYPE_CHOICES)
+    #LEARNERSHIP_TYPE_CHOICES = (
+    #    ('Technical', 'Technical'),
+    #    ('Academic', 'Academic'),
+    #)
+    #learnership_type = models.CharField(max_length=10, choices=LEARNERSHIP_TYPE_CHOICES)
     #enrolment_status_id = models.CharField(max_length=3)
     enrolment_status_id = models.ForeignKey(Enrolment_Status_Id, to_field='lookup', on_delete = models.CASCADE)
     assessor_registration_number = models.CharField(max_length=20, blank=True)
@@ -793,8 +793,9 @@ class Learnership(models.Model):
     ofo_code = models.ForeignKey(OFO_Code, to_field='lookup', on_delete = models.CASCADE)
     # sdl_no = models.ForeignKey(Employer)
     urban_rural_id = models.ForeignKey(Urban_Rural_ID, to_field='lookup', on_delete = models.CASCADE)
+    learning_programme_type_id = models.CharField(max_length=10)
     date_stamp = models.DateField(default=datetime.datetime.now)
-
+    
 
     def __str__(self):
         return '%s (%s)' % (self.person, self.learnership_id)
@@ -901,6 +902,7 @@ class Non_NQF_Intervention(models.Model):
     non_nqf_intervention_etqe_id = models.CharField(max_length=10)
     non_nqf_status_id = models.ForeignKey(Non_NQF_Interv_Status_Id, to_field='lookup', on_delete=models.CASCADE)
     non_nqf_credit = models.CharField(max_length=10)
+    learning_programme_type_id = models.CharField(max_length=10)
     date_stamp = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):

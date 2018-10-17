@@ -934,8 +934,8 @@ class Non_NQF_Placement(models.Model):
     date_stamp = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):
-	return str(self.person)+str(self.non_nqf_intervention_code)
-
+        return str(self.person)+str(self.non_nqf_intervention_code)
+        
 #Non NQF Interv Code:
 #*Non NQF Interv Name:
 #*Subfield Id:

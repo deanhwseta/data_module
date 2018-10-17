@@ -931,7 +931,8 @@ class Non_NQF_Placement(models.Model):
     urban_rural_id = models.ForeignKey(Urban_Rural_ID, on_delete=models.CASCADE)
     date_stamp = models.DateField(default=datetime.datetime.now)
 
-
+    def __str__(self):
+	return str(self.person)+str(self.non_nqf_intervention_code)
 
 #Non NQF Interv Code:
 #*Non NQF Interv Name:

@@ -688,7 +688,7 @@ class Person(models.Model):
     citizen_resident_status_code = models.ForeignKey(Citizen_Resident_Status_Code, to_field='lookup', on_delete = models.CASCADE)
     person_last_name = models.CharField(max_length=45, validators=[validate_na_geen, validate_names])
     person_first_name = models.CharField(max_length=26, validators=[validate_na_geen, validate_names])
-    person_middle_name = models.CharField(max_length=50, validators=[validate_na_geen, validate_names])
+    person_middle_name = models.CharField(max_length=50, blank=True, validators=[validate_na_geen, validate_names])
     person_title = models.CharField(max_length=10, choices=PERSON_TITLES)
     person_birth_date = models.DateField(max_length=8, validators=[validate_sixteen, validate_eighteen_fifty])
     person_home_address_1 = models.CharField(max_length=50, validators=[validate_na_geen, validate_letters_special])
